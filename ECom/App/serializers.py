@@ -1,17 +1,19 @@
 from django.contrib.auth.models import Group, User
 from rest_framework import serializers
-from .models import Category,Product,CartItem,order,OrderItem,Payment
+from .models import Category,Product,CartItem,Order,OrderItem,Payment
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = "__all__"
-
+        fields = ['username','password']
+        extra_kwargs = {'password':{'write_only':True}}
+      
+    
 class GroupSerializer(serializers.ModelSerializer):
     class Meta:
         model = Group
-        fields = "__all__"
-        
+        fields = ['id','name']
+
         
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
@@ -32,7 +34,7 @@ class CartItemSerializer(serializers.ModelSerializer):
         
 class orderSerializer(serializers.ModelSerializer):
     class Meta:
-        model = order
+        model = Order
         fields = "__all__"
         
 class OrderItemSerializer(serializers.ModelSerializer):

@@ -51,7 +51,7 @@ class CartItem(models.Model):
     
     
 
-class order(models.Model):
+class Order(models.Model):
     STATUS_CHOICES = (
         ('pending','Pending'),
         ('processing','Processing'),
@@ -68,7 +68,7 @@ class order(models.Model):
         return f"order #{self.id} by {self.user.username}"
     
 class OrderItem(models.Model):
-    order = models.ForeignKey(order,related_name='items',on_delete=models.CASCADE)
+    order = models.ForeignKey(Order,related_name='items',on_delete=models.CASCADE)
     product = models.ForeignKey(Product, on_delete=models.SET_NULL,null=True)
     quantity = models.PositiveIntegerField()
     price = models.DecimalField(max_digits=10, decimal_places=2)
@@ -81,7 +81,7 @@ class OrderItem(models.Model):
     
 
 class Payment(models.Model):
-    order = models.OneToOneField(order, on_delete=models.CASCADE)
+    order = models.OneToOneField(Order, on_delete=models.CASCADE)
     payment_method = models.CharField(max_length=50) #khalti esewa
     payment_status = models.CharField(max_length=50, default="pending")
     transaction_id = models.CharField(max_length=100,blank=True,null=True)

@@ -19,15 +19,15 @@ from django.urls import path
 from App.views import DashboardView,RegisterView,LoginView,CategoryView,ProductView,CardItemView,OrderView,PaymentView,OrderItemView
 
 urlpatterns = [
-    path('dashboard/', DashboardView.as_view({'get': 'list', 'post': 'create'}), name='dashboard'),
-    path('register/', RegisterView.as_view({'get': 'list', 'post': 'create'}), name='register'),
-    path('login/', LoginView.as_view({'get': 'list'}), name='login'),
-    path('category/', CategoryView.as_view({'get': 'list', 'post': 'create'}), name='category'),
-    path('product/', ProductView.as_view({'get': 'list', 'post': 'create'}), name='product'),
-    path('cart/', CardItemView.as_view({'get': 'list', 'post': 'create'}), name='cart'),
-    path('order/', OrderView.as_view({'get': 'list', 'post': 'create'}), name='order'),
-    path('order-item/', OrderItemView.as_view({'get': 'list', 'post': 'create'}), name='order-item'),
-    path('payment/', PaymentView.as_view({'get': 'list', 'post': 'create'}), name='payment'),
+    path('dashboard/', DashboardView.as_view({'get': 'list', 'post': 'create'})),
+    path('register/', RegisterView.as_view({'post': 'create'})),
+    path('login/', LoginView.as_view({'post': 'create'})),
+    path('category/', CategoryView.as_view({'get': 'list', 'post': 'create'})),
+    path('product/', ProductView.as_view({'get': 'list', 'post': 'create'})),
+    path('cart/', CardItemView.as_view({'get': 'list', 'post': 'create'})),
+    path('order/', OrderView.as_view({'get': 'list', 'post': 'create'})),
+    path('order-item/', OrderItemView.as_view({'get': 'list', 'post': 'create'})),
+    path('payment/', PaymentView.as_view({'get': 'list', 'post': 'create'})),
     
     
     path('admin/', admin.site.urls),
