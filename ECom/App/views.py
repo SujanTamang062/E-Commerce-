@@ -89,7 +89,12 @@ class OrderItemView(ModelViewSet):
 class PaymentView(ModelViewSet):
     queryset = Payment.objects.all()
     serializer_class = PaymentSerializer
-    permission_classes = [DjangoModelPermissions,IsAuthenticated]
+    permission_classes = [DjangoModelPermissions,IsAuthenticated]  
+    
+    
+    
+
+#card functionaliy
     
     
 
