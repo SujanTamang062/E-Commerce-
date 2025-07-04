@@ -1,0 +1,3 @@
+ Want to buy items	Go to -> OrderItem (via Order)	It shows what exact products you're buying — quantity, price, etc.
+ Want to see all your past orders	Go to -> Order	It lists your completed orders (like a history page).
+ Want to review your cart (before buying)	Go to ->CartItem	This is your pre-purchase zone — stuff you added but haven’t ordered yet.

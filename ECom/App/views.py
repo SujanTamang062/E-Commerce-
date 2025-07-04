@@ -10,6 +10,12 @@ from rest_framework import status
 from django.contrib.auth import authenticate
 from rest_framework.authtoken.models import Token
 from rest_framework.permissions import DjangoModelPermissions,IsAuthenticated
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework import filters
+from rest_framework import filters
+
+
+
 class DashboardView(ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
@@ -59,14 +65,22 @@ class LoginView(GenericViewSet):
     
 class CategoryView(ModelViewSet):
     queryset = Category.objects.all()
-    serializer_class = CategorySerializer
-    
+    serializer_class = CategorySerializer   
     permission_classes = []
+
     
 class ProductView(ModelViewSet):
-    queryset = Product.objects.all()
+    queryset = Product.objects.all().order_by('id')
     serializer_class = ProductSerializer
+    # filter_backends = [DjangoFilterBackend]
     
+    filter_backends = [DjangoFilterBackend, filters.SearchFilter]  # ✅ FIXED
+    filterset_fields = ['price', 'created_at', 'category']  # ✅ use model fields
+    
+    # filterset_fields = ['price','created_at']
+    # filter_backends = [filters.SearchFilter]
+    
+    search_fields = ['price', 'created_at','name']    
     permission_classes = []
     
 class CardItemView(ModelViewSet):
@@ -76,11 +90,15 @@ class CardItemView(ModelViewSet):
     permission_classes = []
     
 class OrderView(ModelViewSet):
-    queryset = Order.objects.all()
+    queryset = Order.objects.all().order_by('id')
     serializer_class = orderSerializer
-    permission_classes = [DjangoModelPermissions,IsAuthenticated]
-    
-    permission_classes = []
+    permission_classes = [DjangoModelPermissions,IsAuthenticated]   
+    # filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['quantity','price']
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['quantity','price'] 
+   
+   
 class OrderItemView(ModelViewSet):
     queryset = OrderItem.objects.all()
     serializer_class = OrderItemSerializer
@@ -94,7 +112,6 @@ class PaymentView(ModelViewSet):
     
     
 
-#card functionaliy
     
     
 

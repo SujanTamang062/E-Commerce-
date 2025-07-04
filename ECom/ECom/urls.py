@@ -19,14 +19,25 @@ from django.urls import path
 from App.views import DashboardView,RegisterView,LoginView,CategoryView,ProductView,CardItemView,OrderView,PaymentView,OrderItemView
 
 urlpatterns = [
-    path('dashboard/', DashboardView.as_view({'get': 'list', 'post': 'create'})),
+    path('dashboard/', DashboardView.as_view({'get': 'list', 'post': 'create'})),  #this is for login,sighup as home page
     path('register/', RegisterView.as_view({'post': 'create'})),
     path('login/', LoginView.as_view({'post': 'create'})),
+    
     path('category/', CategoryView.as_view({'get': 'list', 'post': 'create'})),
+    path('category/<int:pk>/', CategoryView.as_view({'get': 'retrieve', 'put': 'update','patch': 'partial_update','delete': 'destroy'})),
+    
     path('product/', ProductView.as_view({'get': 'list', 'post': 'create'})),
+    path('product/<int:pk>/', ProductView.as_view({'get': 'retrieve', 'put': 'update','patch': 'partial_update','delete': 'destroy'})),
+    
     path('cart/', CardItemView.as_view({'get': 'list', 'post': 'create'})),
+    path('cart/<int:pk>/', CardItemView.as_view({'get': 'retrieve', 'put': 'update','patch': 'partial_update','delete': 'destroy'})),
+    
     path('order/', OrderView.as_view({'get': 'list', 'post': 'create'})),
+    path('order/<int:pk>/', OrderView.as_view({'get': 'retrieve', 'put': 'update','patch': 'partial_update','delete': 'destroy'})),
+    
     path('order-item/', OrderItemView.as_view({'get': 'list', 'post': 'create'})),
+    path('order-item/<int:pk>/', OrderItemView.as_view({'get': 'retrieve', 'put': 'update','patch': 'partial_update','delete': 'destroy'})),
+    
     path('payment/', PaymentView.as_view({'get': 'list', 'post': 'create'})),
     
     

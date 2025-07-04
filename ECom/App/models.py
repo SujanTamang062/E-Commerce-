@@ -22,7 +22,7 @@ class Product(models.Model):
     slug = models.SlugField(unique=True,blank=True) 
     description = models.TextField(blank=True)    # Product description (optional)
     price = models.DecimalField(max_digits=10,decimal_places=2)   
-    stock = models.PositiveIntegerField()
+    stock = models.PositiveIntegerField()     #here decreaseing after card-item decreaing
     category = models.ForeignKey(Category,on_delete=models.CASCADE)
     image = models.ImageField(upload_to='products/',blank=True,null=True)    # Product image
     is_avilable = models.BooleanField(default=True)
@@ -70,7 +70,7 @@ class Order(models.Model):
 class OrderItem(models.Model):
     order = models.ForeignKey(Order,related_name='items',on_delete=models.CASCADE)
     product = models.ForeignKey(Product, on_delete=models.SET_NULL,null=True)
-    quantity = models.PositiveIntegerField()
+    quantity = models.PositiveIntegerField()   #after clicking here qunatity should be decrease so i does in qunatity
     price = models.DecimalField(max_digits=10, decimal_places=2)
     
     def subtotal(self):
@@ -78,6 +78,15 @@ class OrderItem(models.Model):
     
     def __str__(self):
         return f"{self.product.name} ({self.quantity})"
+    
+    def save(self, *args, **kwargs):   #for updaing after buy
+        if self.pk is None:                                    #     Checks if this is a new object (not updating an existing one).
+            if self.product and self.product.stock >= self.quantity:   # Checks if there’s enough stock to place the order.
+                self.product.stock -= self.quantity   # Reduces stock from the product, and saves it.
+                self.product.save()
+            else:
+                raise ValueError("Not enough stock available!")
+        super().save(*args, **kwargs)
     
 
 class Payment(models.Model):

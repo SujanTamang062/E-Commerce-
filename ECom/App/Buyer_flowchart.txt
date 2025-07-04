@@ -1,17 +1,26 @@
-1. Adds product to cart
-   - Buyer picks a product, clicks "Add to Cart"
-   - API creates CartItem with user ID, product, and quantity
+         // This is how the buyer buy
+         
+                                1. Adds product to cart
+                                - Buyer picks a product, clicks "Add to Cart"
+                                - API creates CartItem with user ID, product, and quantity
 
-2. Places an order
-   - Buyer checks out cart
-   - API creates Order linked to buyer with total price
+                                2. Places an order
+                                - Buyer checks out cart
+                                - API creates Order linked to buyer with total price
 
-3. Order details saved
-   - Each product in cart becomes an OrderItem with quantity & price snapshot
+                                3. Order details saved
+                                - Each product in cart becomes an OrderItem with quantity & price snapshot
 
-4. Buyer pays
-   - Pays via Khalti or eSewa
-   - API saves Payment record with method, status, transaction ID, and timestamp
+                                4. Buyer pays
+                                - Pays via Khalti or eSewa
+                                - API saves Payment record with method, status, transaction ID, and timestamp
 
-5. Order status updated
-   - System tracks order status (pending -> processing -> completed)
+                                5. Order status updated
+                                - System tracks order status (pending -> processing -> completed)
+
+            
+
+
+
+
+
