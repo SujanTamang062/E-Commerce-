@@ -110,9 +110,4 @@ class PaymentView(ModelViewSet):
     permission_classes = [DjangoModelPermissions,IsAuthenticated]  
     
     
-    
-
-    
-    
-
-
+ 

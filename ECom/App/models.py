@@ -98,3 +98,6 @@ class Payment(models.Model):
     
     def __str__(self):
         return f"payment for order #{self.order.id}"
+    
+    
+ 

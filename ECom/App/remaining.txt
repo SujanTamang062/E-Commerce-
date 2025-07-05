@@ -1,15 +1,8 @@
- 6.Notifications(21)
-    Alerts for buyers: order updates, delivery status, sale alerts
 
-            Alerts for admins: new orders, low stock warnings
-
-
-8. Analytics(23)
-        Show admin sales stats, top products, and customer counts
 
 //10 Payment Integration(24)
    //esewa
 
-     -------------------------------Finish------ complete check(25)   ---------------
-7.Emails(22)
-       Send order receipts, password resets, and promo offers
+
+
+
